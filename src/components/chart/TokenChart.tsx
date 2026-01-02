@@ -105,6 +105,7 @@ export function TokenChart({ symbol, basePrice = 0.05, useRealData = true, class
   const [showMarketCap, setShowMarketCap] = useState(false);
   const [livePrice, setLivePrice] = useState<number | null>(null);
   const [priceDirection, setPriceDirection] = useState<'up' | 'down' | null>(null);
+  const [volume24h, setVolume24h] = useState<number>(Math.random() * 500000 + 50000);
   
   const timeFrames: { value: TimeFrame; label: string }[] = [
     { value: '1m', label: '1m' },
@@ -345,6 +346,9 @@ export function TokenChart({ symbol, basePrice = 0.05, useRealData = true, class
           </div>
           <div className="text-xs text-[#8b949e]">
             on Virtual Curve · {timeFrames.find(t => t.value === timeFrame)?.label}
+          </div>
+          <div className="text-xs text-[#8b949e] ml-4">
+            24h Vol: <span className="text-[#e6edf3]">${volume24h >= 1000 ? `${(volume24h / 1000).toFixed(1)}K` : volume24h.toFixed(0)}</span>
           </div>
         </div>
         
