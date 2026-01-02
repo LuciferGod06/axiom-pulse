@@ -149,6 +149,9 @@ export function TokenColumn({
         case 'priceChange':
           comparison = a.priceChange - b.priceChange;
           break;
+        case 'holders':
+          comparison = a.holders - b.holders;
+          break;
         default:
           comparison = 0;
       }
