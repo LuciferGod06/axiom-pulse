@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
@@ -65,8 +65,25 @@ export function Header() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [walletConnected, setWalletConnected] = useState(true);
   const [holdings, setHoldings] = useState<Holding[]>([]);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const walletAddress = '8xK4...mN2p';
   const solBalance = 45;
+
+  // Keyboard shortcut: "/" to focus search
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === '/' && !isSearchFocused) {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+      if (e.key === 'Escape' && isSearchFocused) {
+        searchInputRef.current?.blur();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isSearchFocused]);
 
   // Load holdings from localStorage and listen for updates
   useEffect(() => {
@@ -149,6 +166,7 @@ export function Header() {
           )}>
             <Search className="absolute left-3 w-4 h-4 text-[#8b949e]" />
             <Input
+              ref={searchInputRef}
               placeholder="Search by token or CA..."
               className={cn(
                 'pl-9 pr-8 h-9 bg-[#21262d] border-[#30363d] text-[#e6edf3] text-sm',

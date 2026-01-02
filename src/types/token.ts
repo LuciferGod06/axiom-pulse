@@ -35,7 +35,7 @@ export interface TokenData {
 
 export type ColumnType = 'new-pairs' | 'final-stretch' | 'migrated';
 
-export type SortField = 'age' | 'marketCap' | 'volume' | 'txCount' | 'priceChange';
+export type SortField = 'age' | 'marketCap' | 'volume' | 'txCount' | 'priceChange' | 'holders';
 
 export type SortDirection = 'asc' | 'desc';
 

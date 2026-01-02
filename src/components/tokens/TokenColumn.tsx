@@ -34,6 +34,7 @@ import {
   BarChart2,
   Radio,
   RefreshCw,
+  Users,
 } from 'lucide-react';
 
 interface PriceChange {
@@ -65,6 +66,7 @@ const sortOptions: { field: SortField; label: string; icon: React.ReactNode }[] 
   { field: 'volume', label: 'Volume', icon: <BarChart2 className="w-4 h-4" /> },
   { field: 'txCount', label: 'Transactions', icon: <Flame className="w-4 h-4" /> },
   { field: 'priceChange', label: 'Price Change', icon: <TrendingUp className="w-4 h-4" /> },
+  { field: 'holders', label: 'Holders', icon: <Users className="w-4 h-4" /> },
 ];
 
 function parseAge(age: string): number {
